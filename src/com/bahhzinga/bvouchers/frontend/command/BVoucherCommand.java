@@ -45,6 +45,14 @@ public class BVoucherCommand implements CommandExecutor {
                         }
 
                     } else {
+                        if (args.length == 1){
+                            if (args[0].equalsIgnoreCase("save")){
+                                BVoucherFile.save();
+                                player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                                        "&3&lB&b&lVouchers &8// &7Successfully reloaded the plugin!"));
+                            }
+                        }
+
                         if (args.length == 2){
 
                             Bukkit.getLogger().info(args[1]);
@@ -64,7 +72,7 @@ public class BVoucherCommand implements CommandExecutor {
 
                                     voucher.setOwner(voucher.get(), player.getUniqueId());
                                     voucher.setUses(voucher.get(), 10);
-                                    voucher.setName(voucher.get(), "example");
+                                    voucher.setName(voucher.get(), args[1]);
                                     voucher.setAction(voucher.get(), BVoucherFile.getConfig().getString("vouchers." + args[1] + ".action"));
 
                                     player.getInventory().addItem(voucher.get());
@@ -80,11 +88,6 @@ public class BVoucherCommand implements CommandExecutor {
                                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3&lB&b&lVouchers &8// &7Unable to find that player!"));
                             }
 
-                        } else {
-                            if (args[0] == "save"){
-                                BVoucherFile.save();
-                                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&3&lB&b&lVouchers &8// &7Saved configuration file!"));
-                            }
                         }
                     }
 

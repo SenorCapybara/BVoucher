@@ -5,7 +5,6 @@ import com.bahhzinga.bvouchers.backend.api.BVoucher;
 import com.bahhzinga.bvouchers.backend.files.BVoucherFile;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.protocol.packet.Chat;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Particle;
@@ -20,7 +19,6 @@ import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -33,7 +31,6 @@ public class ClaimEvent implements Listener {
     public void onVoucherClaim(PlayerInteractEvent event) {
 
         Player p = event.getPlayer();
-
 
         new BukkitRunnable() {
 
@@ -91,7 +88,7 @@ public class ClaimEvent implements Listener {
                                                     BVoucherFile.getConfig().getString("vouchers." + name + ".actionbar"))));
 
                                             // Play lightning
-                                            if (BVoucherFile.getConfig().getBoolean("vouchers." + name + ".fakeLightning") == true) {
+                                            if (BVoucherFile.getConfig().getBoolean("vouchers." + name + ".fakeLightning")) {
                                                 p.getWorld().strikeLightningEffect(p.getLocation());
                                             }
 
