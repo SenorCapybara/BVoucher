@@ -39,6 +39,8 @@ public class BVoucher {
 
     }
 
+
+
     public ItemStack get(){
 
         ItemStack item = new ItemStack(Material.PAPER);

@@ -11,10 +11,15 @@ import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.InvalidConfigurationException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,8 +51,16 @@ public class BVoucherCommand implements CommandExecutor {
 
                     } else {
                         if (args.length == 1){
-                            if (args[0].equalsIgnoreCase("save")){
-                                BVoucherFile.save();
+                            if (args[0].equalsIgnoreCase("save")){;
+
+                                try {
+                                    BVoucherFile.getFileConf().load(BVoucherFile.getFile());
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                } catch (InvalidConfigurationException e) {
+                                    throw new RuntimeException(e);
+                                }
+
                                 player.sendMessage(ChatColor.translateAlternateColorCodes('&',
                                         "&3&lB&b&lVouchers &8// &7Successfully reloaded the plugin!"));
                             }

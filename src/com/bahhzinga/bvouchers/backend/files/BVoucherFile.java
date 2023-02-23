@@ -15,17 +15,26 @@ public class BVoucherFile {
     private static FileConfiguration yml = YamlConfiguration.loadConfiguration(file);
 
     public static void save(){
-        System.out.println(Main.getPlugin(Main.class).getDataFolder());
-        try {
-            yml.save(file);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        YamlConfiguration.loadConfiguration(file);
+    }
+
+    public static File getFile(){
+        return file;
+    }
+
+    public static FileConfiguration getFileConf(){
+        return yml;
     }
 
     public static void create(){
 
+
+
+        // If file doesn't exist
         if (!file.exists()){
+
+            File dir = file.getParentFile();
+            dir.mkdirs();
             try {
                 file.createNewFile();
                 yml.set("vouchers.example.displayname", "&eExample Voucher");
@@ -40,7 +49,7 @@ public class BVoucherFile {
                 yml.set("vouchers.example.announcement", Arrays.asList("&8[&eVouchers] &e<PLAYER> &7has redeemed a voucher and won &a$10mn&7!"));
                 yml.set("vouchers.example.actionbar", "&7You just won &e$10mn&7 from your Voucher!");
                 yml.set("vouchers.example.receive.message", Arrays.asList("&8[&eVouchers&8] &7You just received a voucher!", "&7Total uses: &e2", "&7Reward: &a$10 million"));
-                yml.set("vouchers.example.receive.sound", "NOTE_PLING");
+                yml.set("vouchers.example.receive.sound", "ENTITY_PLAYER_LEVELUP");
                 yml.set("vouchers.example.particle", "PORTAL");
                 yml.set("vouchers.example.fakeLightning", true);
                 yml.set("vouchers.example.bonusRewards.use", true);
