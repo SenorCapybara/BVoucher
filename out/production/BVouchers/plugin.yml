@@ -1,0 +1,8 @@
+name: BVouchers
+version: 1.0.0
+api-version: 1.16
+main: com.bahhzinga.bvouchers.Main
+
+commands:
+  bvouchers:
+    permission: bvouchers.admin
