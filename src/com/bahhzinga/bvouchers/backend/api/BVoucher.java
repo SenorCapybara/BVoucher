@@ -22,7 +22,7 @@ public class BVoucher {
     private int uses;
     private String name;
     private static NamespacedKey key_owner = new NamespacedKey(Main.getPlugin(Main.class), "uuid");
-    private static NamespacedKey key_uses = new NamespacedKey(Main.getPlugin(Main.class), "uses");
+    public static NamespacedKey key_uses = new NamespacedKey(Main.getPlugin(Main.class), "uses");
     private static NamespacedKey key_actions = new NamespacedKey(Main.getPlugin(Main.class), "action");
     private static NamespacedKey uniquekey = new NamespacedKey(Main.getPlugin(Main.class), "uniquekey");
     public static NamespacedKey key_name = new NamespacedKey(Main.getPlugin(Main.class), "name");
@@ -110,7 +110,7 @@ public class BVoucher {
     public void setUses(ItemStack item, int uses){
         ItemMeta meta = item.getItemMeta();
         int current = meta.getPersistentDataContainer().get(key_uses, PersistentDataType.INTEGER);
-        meta.getPersistentDataContainer().set(key_uses, PersistentDataType.INTEGER, current-uses);
+        meta.getPersistentDataContainer().set(key_uses, PersistentDataType.INTEGER, current+uses);
         item.setItemMeta(meta);
 
     }
