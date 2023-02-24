@@ -38,10 +38,9 @@ public class ClaimEvent implements Listener {
                 ItemStack item = event.getPlayer().getInventory().getItemInMainHand();
                 ItemMeta meta = item.getItemMeta();
                 String name = meta.getPersistentDataContainer().get(key_name, PersistentDataType.STRING);
-                int current = meta.getPersistentDataContainer().get(key_uses, PersistentDataType.INTEGER);
-                if (current >= 1) {
-
-                    if (name != null){
+                if (name != null){
+                    int current = meta.getPersistentDataContainer().get(key_uses, PersistentDataType.INTEGER);
+                    if (current >= 1) {
                         BVoucher voucher = new BVoucher(name, p.getUniqueId(), "", Arrays.asList(""), 0, "", 1);
                         if (BVoucherFile.getConfig().getConfigurationSection("vouchers").getKeys(false).contains(name)) {
 
